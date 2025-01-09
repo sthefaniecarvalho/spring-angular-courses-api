@@ -34,4 +34,12 @@ target/
 
 # VSCode
 .vscode/
+.idea/
+
+# Build
+dist/
+build/
+
+tmp/
+.angular/
 
