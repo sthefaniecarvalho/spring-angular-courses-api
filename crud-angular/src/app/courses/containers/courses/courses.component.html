@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-content>
+    <mat-toolbar color="primary">
+      <span>Available Courses</span>
+    </mat-toolbar>
+
+    @if (courses$ | async; as courses) {
+    <div class="column-flex mat-elevation-z8">
+      <app-courses-list
+        [courses]="courses.courses"
+        (add)="onAdd()"
+        (edit)="onEdit($event)"
+        (remove)="onRemove($event)"
+      >
+      </app-courses-list>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 15]"
+        showFirstLastButtons
+        [pageIndex]="pageIndex"
+        [pageSize]="pageSize"
+        [length]="courses.totalElements"
+        (page)="refresh($event)"
+        aria-label="Select page of courses"
+      >
+      </mat-paginator>
+    </div>
+    } @else {
+    <div class="loading-spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+    }
+  </mat-card-content>
+</mat-card>
